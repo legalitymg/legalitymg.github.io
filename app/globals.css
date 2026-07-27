@@ -129,7 +129,7 @@ button, input, select, textarea { font: inherit; }
 .brand-visual > i { width: 54px; height: 1px; margin: 25px 0 18px; background: var(--gold); }
 .brand-visual > p { margin: 0; color: rgba(255,255,255,.62); font-size: 9px; line-height: 1.8; letter-spacing: .16em; text-transform: uppercase; }
 .hero-note {
-  position: absolute; z-index: 4; left: -54px; top: 58%; display: flex; align-items: center; gap: 12px;
+  position: absolute; z-index: 4; left: -46px; top: auto; bottom: 34px; display: flex; align-items: center; gap: 12px;
   padding: 14px 18px; background: rgba(255, 253, 249, .94); border: 1px solid rgba(201,170,115,.35);
   box-shadow: 0 16px 45px rgba(22,49,41,.13); border-radius: 14px; backdrop-filter: blur(10px);
 }
@@ -375,7 +375,7 @@ button, input, select, textarea { font: inherit; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 20px; }
   .trust-row { gap: 11px; }
   .hero-portrait-wrap { width: min(420px, 88%); margin-top: 30px; }
-  .hero-note { left: -8%; top: 61%; }
+  .hero-note { left: -5%; top: auto; bottom: 28px; }
   .scroll-cue { display: none; }
   .marquee div { gap: 20px; }
   .section { padding: 82px 0; }
@@ -416,7 +416,7 @@ button, input, select, textarea { font: inherit; }
 @media (max-width: 460px) {
   .brand { min-width: 0; }
   .brand strong { font-size: 18px; }
-  .hero-note { position: relative; left: auto; top: auto; margin: -35px auto 0; width: 90%; }
+  .hero-note { position: relative; left: auto; top: auto; bottom: auto; margin: -35px auto 0; width: 90%; }
   .portrait-frame, .brand-visual { border-radius: 42% 42% 8px 8px; }
   .portrait-overlay { left: 22px; bottom: 20px; }
   .trust-row { flex-direction: column; }
