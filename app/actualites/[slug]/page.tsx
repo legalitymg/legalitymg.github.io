@@ -5,6 +5,11 @@ import { ArrowIcon } from "@/components/icons";
 import { articles } from "@/components/site-data";
 import { Footer, Header } from "@/components/site-shell";
 
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://legalitymg.github.io"
+).replace(/\/$/, "");
+
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
 }
@@ -16,7 +21,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const article = articles.find((item) => item.slug === slug);
-  return { title: article?.title ?? "Publication" };
+  if (!article) return { title: "Publication" };
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    alternates: { canonical: `/actualites/${article.slug}/` },
+    openGraph: {
+      type: "article",
+      locale: "fr_MG",
+      url: `/actualites/${article.slug}/`,
+      title: article.title,
+      description: article.excerpt,
+      publishedTime: article.dateIso,
+      authors: ["Legality Madagascar Firm"],
+    },
+  };
 }
 
 export default async function ArticlePage({
@@ -28,11 +48,40 @@ export default async function ArticlePage({
   const article = articles.find((item) => item.slug === slug);
   if (!article) notFound();
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.dateIso,
+    dateModified: article.dateIso,
+    inLanguage: "fr-MG",
+    mainEntityOfPage: `${siteUrl}/actualites/${article.slug}/`,
+    author: {
+      "@type": "Organization",
+      name: "Legality Madagascar Firm",
+      url: siteUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Legality Madagascar Firm",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/favicon.svg`,
+      },
+    },
+  };
+
   return (
     <>
       <Header />
       <main>
         <article className="article-page">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+          />
           <header className="article-header">
             <div className="shell article-header-inner">
               <Link className="back-link" href="/actualites">← Conseils & actualités</Link>

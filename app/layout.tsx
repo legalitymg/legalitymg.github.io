@@ -1,47 +1,49 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const siteUrl =
+const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://cabinet-avocate.major-bell-4313.chatgpt.site";
+  "https://legalitymg.github.io"
+).replace(/\/$/, "");
+
+const siteName = "Legality Madagascar Firm";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Legality Madagascar | Cabinet juridique à Antananarivo",
-    template: "%s | Legality Madagascar",
+    default: "Legality Madagascar Firm | Cabinet juridique à Madagascar",
+    template: `%s | ${siteName}`,
   },
   description:
-    "Legality Madagascar Firm, cabinet juridique à Antananarivo : conseil, accompagnement judiciaire, droit des affaires, fiscalité, travail, immobilier et conformité.",
+    "Legality Madagascar Firm, cabinet juridique à Antananarivo, accompagne particuliers, entreprises, organisations et investisseurs à Madagascar.",
   keywords: [
+    "cabinet juridique à Madagascar",
     "cabinet juridique Madagascar",
     "cabinet juridique Antananarivo",
     "conseil juridique Antananarivo",
     "cabinet droit des affaires Madagascar",
     "conseil juridique Madagascar",
-    "Legality Madagascar",
+    "Legality Madagascar Firm",
   ],
-  authors: [{ name: "Legality Madagascar" }],
-  creator: "Legality Madagascar",
-  publisher: "Legality Madagascar",
-  alternates: { canonical: "/" },
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
   openGraph: {
     type: "website",
     locale: "fr_MG",
     url: "/",
-    siteName: "Legality Madagascar",
-    title: "Legality Madagascar | Cabinet juridique à Antananarivo",
+    siteName,
+    title: "Legality Madagascar Firm | Cabinet juridique à Madagascar",
     description:
-      "Conseil, accompagnement et défense juridique à Antananarivo, Madagascar.",
+      "Conseil, accompagnement juridique et services aux particuliers, entreprises et investisseurs à Antananarivo et à Madagascar.",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Legality Madagascar | Cabinet juridique",
-    description: "Cabinet juridique à Antananarivo, Madagascar.",
+    card: "summary",
+    title: "Legality Madagascar Firm | Cabinet juridique",
+    description: "Cabinet juridique à Antananarivo et à Madagascar.",
   },
   category: "legal services",
   other: {
-    "codex-preview": "development",
     "geo.region": "MG-T",
     "geo.placename": "Antananarivo",
   },
@@ -60,10 +62,14 @@ export const viewport: Viewport = {
 const legalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "LegalService",
-  name: "Legality Madagascar",
+  "@id": `${siteUrl}/#cabinet-juridique`,
+  name: siteName,
+  legalName: siteName,
+  slogan: "Votre droit. Notre engagement.",
   description:
-    "Cabinet juridique à Antananarivo proposant conseil, accompagnement judiciaire et services juridiques aux particuliers, entreprises et investisseurs.",
+    "Cabinet juridique à Antananarivo proposant conseil, accompagnement judiciaire et services juridiques aux particuliers, entreprises, organisations et investisseurs à Madagascar.",
   url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
   telephone: "+261348551097",
   email: "legalitymadagascarfirm@gmail.com",
   address: {
@@ -77,14 +83,39 @@ const legalServiceSchema = {
     "@type": "Country",
     name: "Madagascar",
   },
-  availableLanguage: ["fr"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+261348551097",
+    email: "legalitymadagascarfirm@gmail.com",
+    contactType: "service juridique",
+    availableLanguage: ["fr"],
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+  ],
+  knowsAbout: [
+    "Accompagnement juridique et judiciaire",
+    "Recouvrement de créances",
+    "Fiscalité",
+    "Droit des affaires",
+    "Droit du travail",
+    "Investissements étrangers",
+    "Immobilier",
+    "Conformité juridique",
+  ],
+  availableLanguage: "fr",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr">
+    <html lang="fr-MG">
       <body>
         <script
           type="application/ld+json"

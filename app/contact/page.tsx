@@ -5,7 +5,8 @@ import { Footer, Header, PageHero } from "@/components/site-shell";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contacter Legality Madagascar, cabinet juridique à Antananarivo.",
+  description: "Contacter Legality Madagascar Firm, cabinet juridique à Antananarivo, Madagascar.",
+  alternates: { canonical: "/contact/" },
 };
 
 export default function ContactPage() {
@@ -22,7 +23,7 @@ export default function ContactPage() {
           <div className="shell contact-layout">
             <div className="contact-card">
               <p className="eyebrow"><span /> Coordonnées</p>
-              <h2>Legality Madagascar</h2>
+              <h2>Legality Madagascar Firm</h2>
               <dl>
                 <div><dt>Adresse</dt><dd>LOT PR II E 67 JC BIS<br />Tsarahonenana, Antananarivo 101<br />Madagascar</dd></div>
                 <div><dt>Téléphone</dt><dd><a href="tel:+261348551097">+261 34 85 510 97</a></dd></div>

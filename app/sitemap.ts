@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/components/site-data";
 
-const siteUrl =
+const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://cabinet-avocate.major-bell-4313.chatgpt.site";
+  "https://legalitymg.github.io"
+).replace(/\/$/, "");
 
 export const dynamic = "force-static";
 
@@ -21,16 +22,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...pages.map((path) => ({
-      url: `${siteUrl}${path}`,
-      lastModified: new Date(),
+      url: path ? `${siteUrl}${path}/` : `${siteUrl}/`,
+      lastModified: new Date("2026-07-27"),
       changeFrequency: path === "" ? ("weekly" as const) : ("monthly" as const),
-      priority: path === "" ? 1 : 0.8,
+      priority:
+        path === ""
+          ? 1
+          : ["/cabinet", "/expertises", "/contact"].includes(path)
+            ? 0.9
+            : 0.7,
     })),
     ...articles.map((article) => ({
-      url: `${siteUrl}/actualites/${article.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.6,
+      url: `${siteUrl}/actualites/${article.slug}/`,
+      lastModified: new Date("2026-07-27"),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
   ];
 }

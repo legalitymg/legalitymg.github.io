@@ -4,7 +4,9 @@ import { Footer, Header, PageHero } from "@/components/site-shell";
 
 export const metadata: Metadata = {
   title: "Demander une consultation",
-  description: "Choisissez votre type de consultation et présentez votre situation au cabinet.",
+  description:
+    "Demandez une consultation auprès de Legality Madagascar Firm, cabinet juridique à Antananarivo.",
+  alternates: { canonical: "/consultation/" },
 };
 
 export default function ConsultationPage() {

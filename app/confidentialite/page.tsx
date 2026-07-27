@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Footer, Header, PageHero } from "@/components/site-shell";
 
-export const metadata: Metadata = { title: "Politique de confidentialité" };
+export const metadata: Metadata = {
+  title: "Politique de confidentialité",
+  alternates: { canonical: "/confidentialite/" },
+};
 
 export default function PrivacyPage() {
   return (

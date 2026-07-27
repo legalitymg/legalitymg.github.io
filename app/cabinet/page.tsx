@@ -4,8 +4,10 @@ import { ArrowIcon, ScaleIcon } from "@/components/icons";
 import { Footer, Header, PageHero } from "@/components/site-shell";
 
 export const metadata: Metadata = {
-  title: "Le cabinet juridique",
-  description: "Découvrez l’approche, les valeurs et les engagements de Legality Madagascar Firm.",
+  title: "Cabinet juridique à Madagascar",
+  description:
+    "Découvrez Legality Madagascar Firm, cabinet juridique implanté à Antananarivo et intervenant à Madagascar.",
+  alternates: { canonical: "/cabinet/" },
 };
 
 export default function CabinetPage() {

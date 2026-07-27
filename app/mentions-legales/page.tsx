@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Footer, Header, PageHero } from "@/components/site-shell";
 
-export const metadata: Metadata = { title: "Mentions légales" };
+export const metadata: Metadata = {
+  title: "Mentions légales",
+  alternates: { canonical: "/mentions-legales/" },
+};
 
 export default function LegalPage() {
   return (
@@ -11,13 +14,13 @@ export default function LegalPage() {
         <PageHero
           eyebrow="Informations du site"
           title="Mentions légales"
-          intro="Informations relatives à l’édition et au fonctionnement du site de Legality Madagascar."
+          intro="Informations relatives à l’édition et au fonctionnement du site de Legality Madagascar Firm."
         />
         <section className="content-section">
           <div className="shell prose legal-copy">
             <h2>Éditrice du site</h2>
             <p>
-              Legality Madagascar, cabinet juridique à Antananarivo, Madagascar.<br />
+              Legality Madagascar Firm, cabinet juridique à Antananarivo, Madagascar.<br />
               Téléphone : +261 34 85 510 97<br />
               E-mail : legalitymadagascarfirm@gmail.com<br />
               Adresse : LOT PR II E 67 JC BIS, Tsarahonenana, Antananarivo 101, Madagascar.<br />

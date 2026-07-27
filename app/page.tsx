@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon, ScaleIcon, ShieldIcon, SparkIcon } from "@/components/icons";
 import { ArticleCard, Footer, Header, SectionHeading } from "@/components/site-shell";
 import { articles, practiceAreas } from "@/components/site-data";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Legality Madagascar Firm | Cabinet juridique à Madagascar",
+  },
+  description:
+    "Cabinet juridique à Antananarivo : conseil, accompagnement judiciaire, droit des affaires, fiscalité, travail, immobilier et conformité à Madagascar.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
@@ -19,8 +29,9 @@ export default function Home() {
                 <em>Protéger.</em> Avancer.
               </h1>
               <p className="hero-intro">
-                Legality Madagascar accompagne particuliers, entreprises et
-                organisations avec une pratique du droit attentive, claire et engagée.
+                Legality Madagascar Firm accompagne particuliers, entreprises,
+                organisations et investisseurs avec une pratique du droit attentive,
+                claire et engagée à Madagascar.
               </p>
               <div className="hero-actions">
                 <Link className="button button-primary" href="/consultation">

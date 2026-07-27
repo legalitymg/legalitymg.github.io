@@ -3,8 +3,10 @@ import { articles } from "@/components/site-data";
 import { ArticleCard, Footer, Header, PageHero } from "@/components/site-shell";
 
 export const metadata: Metadata = {
-  title: "Conseils & actualités",
-  description: "Conseils pratiques, éclairages juridiques et actualités du cabinet.",
+  title: "Conseils juridiques et actualités à Madagascar",
+  description:
+    "Conseils pratiques, éclairages juridiques et actualités de Legality Madagascar Firm.",
+  alternates: { canonical: "/actualites/" },
 };
 
 export default function ActualitesPage() {

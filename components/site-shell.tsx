@@ -15,7 +15,7 @@ export function Header() {
       <div className="shell header-inner">
         <Link className="brand" href="/" aria-label="Accueil du cabinet">
           <span className="brand-mark"><ScaleIcon /></span>
-          <span><strong>Legality Madagascar</strong><small>Cabinet juridique</small></span>
+          <span><strong>Legality Madagascar Firm</strong><small>Cabinet juridique</small></span>
         </Link>
         <nav className="desktop-nav" aria-label="Navigation principale">
           {nav.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
@@ -42,7 +42,7 @@ export function Footer() {
         <div className="footer-brand">
           <Link className="brand brand-light" href="/">
             <span className="brand-mark"><ScaleIcon /></span>
-            <span><strong>Legality Madagascar</strong><small>Cabinet juridique</small></span>
+            <span><strong>Legality Madagascar Firm</strong><small>Cabinet juridique</small></span>
           </Link>
           <p>Votre droit.<br />Notre engagement.</p>
         </div>
@@ -67,7 +67,7 @@ export function Footer() {
         </div>
       </div>
       <div className="shell footer-bottom">
-        <span>© 2026 Legality Madagascar. Tous droits réservés.</span>
+        <span>© 2026 Legality Madagascar Firm. Tous droits réservés.</span>
         <span className="footer-legal">
           <Link href="/mentions-legales">Mentions légales</Link>
           <Link href="/confidentialite">Confidentialité</Link>

@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl =
+const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://cabinet-avocate.major-bell-4313.chatgpt.site";
+  "https://legalitymg.github.io"
+).replace(/\/$/, "");
 
 export const dynamic = "force-static";
 

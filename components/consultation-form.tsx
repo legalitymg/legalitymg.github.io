@@ -59,7 +59,7 @@ export default function ConsultationForm() {
 
     try {
       const submission = new FormData();
-      submission.append("_subject", "Nouvelle demande de consultation — Legality Madagascar");
+      submission.append("_subject", "Nouvelle demande de consultation — Legality Madagascar Firm");
       submission.append("type_de_consultation", selected?.title ?? "");
       submission.append("nom", form.name);
       submission.append("email", form.email);

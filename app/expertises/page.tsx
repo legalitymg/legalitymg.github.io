@@ -5,8 +5,10 @@ import { practiceAreas } from "@/components/site-data";
 import { Footer, Header, PageHero } from "@/components/site-shell";
 
 export const metadata: Metadata = {
-  title: "Domaines d’intervention",
-  description: "Découvrez les domaines d’intervention du cabinet.",
+  title: "Services et expertises juridiques",
+  description:
+    "Services juridiques à Madagascar : conseil, contentieux, recouvrement, fiscalité, droit des affaires, travail, immobilier et conformité.",
+  alternates: { canonical: "/expertises/" },
 };
 
 export default function ExpertisesPage() {
