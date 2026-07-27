@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useState } from "react";
 import { ArrowIcon } from "./icons";
 
 const formspreeEndpoint = "https://formspree.io/f/xpqvkgyk";
@@ -48,12 +48,6 @@ export default function ConsultationForm() {
   });
 
   const selected = appointmentTypes.find((item) => item.id === kind);
-  const whatsappUrl = useMemo(() => {
-    const message = encodeURIComponent(
-      `Bonjour Legality Madagascar,\n\nJe souhaite demander une consultation.\n\nNom : ${form.name}\nE-mail : ${form.email}\nTéléphone : ${form.phone || "Non renseigné"}\nPréférence : ${form.contactMode}\nType : ${selected?.title ?? ""}\nDomaine : ${form.area || "À déterminer"}\nUrgence : ${form.urgency}\n\nObjet général :\n${form.message}`
-    );
-    return `https://wa.me/261348551097?text=${message}`;
-  }, [form, selected]);
 
   function update(name: string, value: string | boolean) {
     setForm((current) => ({ ...current, [name]: value }));
@@ -64,25 +58,23 @@ export default function ConsultationForm() {
     setStatus("sending");
 
     try {
+      const submission = new FormData();
+      submission.append("_subject", "Nouvelle demande de consultation — Legality Madagascar");
+      submission.append("type_de_consultation", selected?.title ?? "");
+      submission.append("nom", form.name);
+      submission.append("email", form.email);
+      submission.append("telephone", form.phone || "Non renseigné");
+      submission.append("contact_prefere", form.contactMode);
+      submission.append("domaine_juridique", form.area || "À déterminer");
+      submission.append("niveau_urgence", form.urgency);
+      submission.append("objet_general", form.message);
+      submission.append("consentement", form.consent ? "Oui" : "Non");
+      submission.append("source", "legalitymg.github.io");
+
       const response = await fetch(formspreeEndpoint, {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _subject: "Nouvelle demande de consultation — Legality Madagascar",
-          type_de_consultation: selected?.title ?? "",
-          nom: form.name,
-          email: form.email,
-          telephone: form.phone || "Non renseigné",
-          contact_prefere: form.contactMode,
-          domaine_juridique: form.area || "À déterminer",
-          niveau_urgence: form.urgency,
-          objet_general: form.message,
-          consentement: form.consent ? "Oui" : "Non",
-          source: "legalitymg.github.io",
-        }),
+        headers: { Accept: "application/json" },
+        body: submission,
       });
 
       if (!response.ok) {
@@ -103,7 +95,7 @@ export default function ConsultationForm() {
         <h2>Votre demande a bien été envoyée au cabinet.</h2>
         <p>
           Le cabinet la recevra par e-mail et vous répondra selon le mode de
-          contact indiqué. Vous pouvez aussi ouvrir WhatsApp si votre demande est urgente.
+          contact indiqué.
         </p>
         <div className="request-summary">
           <div><span>Type</span><strong>{selected?.title}</strong></div>
@@ -115,8 +107,8 @@ export default function ConsultationForm() {
           <button className="button button-outline" type="button" onClick={() => setStatus("idle")}>
             Nouvelle demande
           </button>
-          <a className="button button-primary" href={whatsappUrl}>
-            Ouvrir WhatsApp <ArrowIcon />
+          <a className="button button-primary" href="mailto:legalitymadagascarfirm@gmail.com">
+            Écrire au cabinet <ArrowIcon />
           </a>
         </div>
         <small>N’envoyez aucun document ni détail confidentiel par ce formulaire.</small>
@@ -266,8 +258,10 @@ export default function ConsultationForm() {
               {status === "error" && (
                 <>
                   <strong>La transmission automatique a échoué.</strong>
-                  <span> Réessayez dans quelques instants ou utilisez </span>
-                  <a href={whatsappUrl}>WhatsApp</a>.
+                  <span> Réessayez dans quelques instants ou écrivez à </span>
+                  <a href="mailto:legalitymadagascarfirm@gmail.com">
+                    legalitymadagascarfirm@gmail.com
+                  </a>.
                 </>
               )}
             </div>
