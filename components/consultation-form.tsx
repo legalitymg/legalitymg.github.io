@@ -3,6 +3,8 @@
 import { FormEvent, useMemo, useState } from "react";
 import { ArrowIcon } from "./icons";
 
+const formspreeEndpoint = "https://formspree.io/f/xpqvkgyk";
+
 const appointmentTypes = [
   {
     id: "premier-echange",
@@ -33,7 +35,7 @@ const appointmentTypes = [
 export default function ConsultationForm() {
   const [step, setStep] = useState(1);
   const [kind, setKind] = useState("");
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -48,7 +50,7 @@ export default function ConsultationForm() {
   const selected = appointmentTypes.find((item) => item.id === kind);
   const whatsappUrl = useMemo(() => {
     const message = encodeURIComponent(
-      `Bonjour Legality Madagascar,\n\nJe souhaite demander une consultation.\n\nNom : ${form.name}\nE-mail : ${form.email}\nTéléphone : ${form.phone || "Non renseigné"}\nPréférence : ${form.contactMode}\nType : ${selected?.title ?? ""}\nDomaine : ${form.area || "À déterminer"}\nUrgence : ${form.urgency}\n\nSituation :\n${form.message}`
+      `Bonjour Legality Madagascar,\n\nJe souhaite demander une consultation.\n\nNom : ${form.name}\nE-mail : ${form.email}\nTéléphone : ${form.phone || "Non renseigné"}\nPréférence : ${form.contactMode}\nType : ${selected?.title ?? ""}\nDomaine : ${form.area || "À déterminer"}\nUrgence : ${form.urgency}\n\nObjet général :\n${form.message}`
     );
     return `https://wa.me/261348551097?text=${message}`;
   }, [form, selected]);
@@ -57,20 +59,51 @@ export default function ConsultationForm() {
     setForm((current) => ({ ...current, [name]: value }));
   }
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+    setStatus("sending");
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _subject: "Nouvelle demande de consultation — Legality Madagascar",
+          type_de_consultation: selected?.title ?? "",
+          nom: form.name,
+          email: form.email,
+          telephone: form.phone || "Non renseigné",
+          contact_prefere: form.contactMode,
+          domaine_juridique: form.area || "À déterminer",
+          niveau_urgence: form.urgency,
+          objet_general: form.message,
+          consentement: form.consent ? "Oui" : "Non",
+          source: "legalitymg.github.io",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("La demande n’a pas pu être transmise.");
+      }
+
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (sent) {
+  if (status === "sent") {
     return (
       <div className="form-success" role="status">
         <span className="success-mark">✓</span>
-        <p className="eyebrow"><span /> Demande préparée</p>
-        <h2>Votre message est prêt à être transmis.</h2>
+        <p className="eyebrow"><span /> Demande transmise</p>
+        <h2>Votre demande a bien été envoyée au cabinet.</h2>
         <p>
-          Relisez les informations ci-dessous, puis ouvrez votre messagerie pour
-          envoyer la demande sur WhatsApp. Le cabinet confirmera ensuite les modalités du rendez-vous.
+          Le cabinet la recevra par e-mail et vous répondra selon le mode de
+          contact indiqué. Vous pouvez aussi ouvrir WhatsApp si votre demande est urgente.
         </p>
         <div className="request-summary">
           <div><span>Type</span><strong>{selected?.title}</strong></div>
@@ -79,14 +112,14 @@ export default function ConsultationForm() {
           <div><span>Préférence</span><strong>{form.contactMode}</strong></div>
         </div>
         <div className="form-actions">
-          <button className="button button-outline" type="button" onClick={() => setSent(false)}>
-            Modifier
+          <button className="button button-outline" type="button" onClick={() => setStatus("idle")}>
+            Nouvelle demande
           </button>
           <a className="button button-primary" href={whatsappUrl}>
-            Continuer sur WhatsApp <ArrowIcon />
+            Ouvrir WhatsApp <ArrowIcon />
           </a>
         </div>
-        <small>Aucun message n’est envoyé avant votre confirmation dans WhatsApp.</small>
+        <small>N’envoyez aucun document ni détail confidentiel par ce formulaire.</small>
       </div>
     );
   }
@@ -172,8 +205,15 @@ export default function ConsultationForm() {
 
         {step === 3 && (
           <fieldset className="form-step">
-            <legend>Parlez-nous brièvement de votre situation.</legend>
-            <p className="step-intro">Restez synthétique et n’ajoutez pas de document confidentiel à ce stade.</p>
+            <legend>Indiquez seulement l’objet général de votre demande.</legend>
+            <p className="step-intro">
+              Quelques mots suffisent pour orienter le premier échange. Les détails seront
+              communiqués directement au cabinet après sa réponse.
+            </p>
+            <p className="form-warning">
+              N’indiquez aucun nom de tiers, numéro de dossier, information confidentielle
+              ou document.
+            </p>
             <div className="field-grid">
               <label className="field">
                 <span>Domaine concerné</span>
@@ -196,8 +236,16 @@ export default function ConsultationForm() {
                 </select>
               </label>
               <label className="field field-wide">
-                <span>Votre message *</span>
-                <textarea required value={form.message} onChange={(e) => update("message", e.target.value)} rows={7} placeholder="Les faits essentiels, les dates importantes et ce que vous souhaitez obtenir…" />
+                <span>Objet général de la demande *</span>
+                <textarea
+                  required
+                  maxLength={300}
+                  value={form.message}
+                  onChange={(e) => update("message", e.target.value)}
+                  rows={5}
+                  placeholder="Ex. : demande concernant un contrat de travail — sans noms, pièces ni détails confidentiels."
+                />
+                <small className="form-char-count">{form.message.length}/300 caractères</small>
               </label>
               <label className="check-field field-wide">
                 <input type="checkbox" required checked={form.consent} onChange={(e) => update("consent", e.target.checked)} />
@@ -206,9 +254,22 @@ export default function ConsultationForm() {
             </div>
             <div className="form-actions">
               <button className="button button-outline" type="button" onClick={() => setStep(2)}>Retour</button>
-              <button className="button button-primary" type="submit" disabled={!form.message || !form.consent}>
-                Préparer ma demande <ArrowIcon />
+              <button
+                className="button button-primary"
+                type="submit"
+                disabled={!form.message || !form.consent || status === "sending"}
+              >
+                {status === "sending" ? "Envoi en cours…" : "Envoyer ma demande"} <ArrowIcon />
               </button>
+            </div>
+            <div className="form-feedback" aria-live="polite">
+              {status === "error" && (
+                <>
+                  <strong>La transmission automatique a échoué.</strong>
+                  <span> Réessayez dans quelques instants ou utilisez </span>
+                  <a href={whatsappUrl}>WhatsApp</a>.
+                </>
+              )}
             </div>
           </fieldset>
         )}

@@ -15,7 +15,7 @@ export default function ConsultationPage() {
         <PageHero
           eyebrow="Demande de consultation"
           title="Préparons ensemble un premier échange utile."
-          intro="Un parcours simple en trois étapes pour préciser votre besoin. Aucune information n’est enregistrée sur ce site de démonstration."
+          intro="Vos coordonnées et un objet général suffisent. La demande est transmise au cabinet ; n’ajoutez aucun document ni détail confidentiel."
         />
         <section className="content-section consultation-page">
           <div className="shell">

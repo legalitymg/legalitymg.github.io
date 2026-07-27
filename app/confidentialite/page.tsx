@@ -11,7 +11,7 @@ export default function PrivacyPage() {
         <PageHero
           eyebrow="Vos données"
           title="Politique de confidentialité"
-          intro="Une base éditoriale à adapter au pays d’exercice, aux outils réellement utilisés et aux obligations professionnelles du cabinet."
+          intro="Le cabinet limite les informations demandées au strict nécessaire pour organiser un premier échange."
         />
         <section className="content-section">
           <div className="shell prose legal-copy">
@@ -23,41 +23,44 @@ export default function PrivacyPage() {
             </p>
             <h2>Données traitées</h2>
             <p>
-              Lorsque vous contactez le cabinet, les informations que vous choisissez
-              de transmettre peuvent inclure votre identité, vos coordonnées, l’objet
-              de votre demande et les éléments nécessaires à son examen.
+              Le formulaire de consultation recueille votre nom, vos coordonnées, votre
+              mode de contact préféré, le domaine juridique concerné, le niveau d’urgence
+              et un objet général très court. Aucun document ni détail confidentiel ne
+              doit être transmis par ce formulaire.
             </p>
             <h2>Finalités et base juridique</h2>
             <p>
-              Ces données sont utilisées pour répondre à votre demande, organiser un
-              rendez-vous, vérifier la possibilité d’intervention et, le cas échéant,
-              exécuter la mission confiée au cabinet. Les bases juridiques précises
-              devront être indiquées selon le droit applicable.
+              Ces données sont utilisées avec votre consentement pour répondre à votre
+              demande, organiser un rendez-vous et vérifier la possibilité d’un premier
+              échange. Elles ne constituent pas, à elles seules, l’ouverture d’un dossier
+              ni l’acceptation d’une mission.
             </p>
             <h2>Durée de conservation</h2>
             <p>
-              Les durées seront définies selon la nature de la demande, l’existence
-              ou non d’un dossier, les obligations légales et les règles
-              professionnelles applicables.
+              Les demandes sans suite sont conservées uniquement pendant la durée
+              nécessaire à leur traitement, puis supprimées des outils de réception.
+              Si une mission est ouverte, les informations utiles sont conservées selon
+              les obligations légales et professionnelles applicables.
             </p>
             <h2>Destinataires et sécurité</h2>
             <p>
-              L’accès aux informations est limité aux personnes et prestataires
-              habilités. Les mesures techniques et organisationnelles devront être
-              précisées en fonction des services effectivement retenus pour le site.
+              L’accès est limité au cabinet et au prestataire technique de formulaire
+              Formspree, qui reçoit la soumission, la conserve dans le compte du cabinet
+              et la transmet à son adresse électronique. Ce service peut traiter les
+              données hors de Madagascar selon ses propres garanties et sa
+              <a href="https://formspree.io/legal/privacy-policy/"> politique de confidentialité</a>.
             </p>
             <h2>Vos droits</h2>
             <p>
-              Selon le droit applicable, vous pouvez disposer de droits d’accès, de
+              Selon le droit applicable, vous pouvez exercer des droits d’accès, de
               rectification, d’effacement, de limitation, d’opposition ou de
-              portabilité. Les coordonnées de l’autorité de contrôle compétente seront
-              ajoutées après confirmation du pays d’exercice.
+              portabilité en écrivant à legalitymadagascarfirm@gmail.com.
             </p>
             <h2>Cookies et mesure d’audience</h2>
             <p>
-              La maquette ne dépose aucun cookie publicitaire. Cette section devra
-              être mise à jour si un outil de mesure d’audience, une vidéo externe,
-              une carte ou un service tiers est ajouté.
+              Le site ne dépose aucun cookie publicitaire ni cookie de mesure d’audience.
+              Formspree applique ses mécanismes techniques de sécurité et de lutte contre
+              les envois automatisés lors de la soumission du formulaire.
             </p>
           </div>
         </section>
