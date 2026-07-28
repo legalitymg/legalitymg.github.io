@@ -17,6 +17,282 @@
   --sans: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Assistant d’orientation — parcours guidé, sans collecte de conversation */
+.orientation-assistant {
+  position: fixed;
+  right: clamp(16px, 2.2vw, 34px);
+  bottom: clamp(16px, 2.2vw, 30px);
+  z-index: 1000;
+  font-family: var(--sans);
+}
+
+.orientation-launcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  padding: 10px 18px 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: var(--ink-deep);
+  color: var(--paper);
+  box-shadow: 0 18px 45px rgba(5, 43, 35, 0.24);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.orientation-launcher:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 52px rgba(5, 43, 35, 0.3);
+}
+
+.orientation-launcher:focus-visible,
+.orientation-panel button:focus-visible,
+.orientation-panel a:focus-visible,
+.orientation-panel summary:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.orientation-launcher-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink-deep);
+  font-family: var(--serif);
+  font-size: 22px;
+}
+
+.orientation-panel {
+  width: min(410px, calc(100vw - 32px));
+  max-height: min(680px, calc(100vh - 110px));
+  margin-bottom: 14px;
+  overflow: auto;
+  border: 1px solid rgba(16, 61, 51, 0.15);
+  border-radius: 24px;
+  background: var(--paper);
+  color: var(--ink-deep);
+  box-shadow: 0 24px 70px rgba(5, 43, 35, 0.24);
+  animation: orientation-enter 220ms ease-out both;
+}
+
+@keyframes orientation-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.orientation-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 24px 19px;
+  border-bottom: 1px solid rgba(16, 61, 51, 0.12);
+  background: var(--ink-deep);
+  color: var(--paper);
+}
+
+.orientation-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.orientation-header h2 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.12;
+}
+
+.orientation-close {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--paper);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.orientation-body {
+  padding: 22px 24px;
+}
+
+.orientation-body p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.orientation-welcome {
+  color: var(--ink-deep) !important;
+}
+
+.orientation-alert {
+  padding: 12px 14px;
+  border-left: 3px solid var(--gold);
+  background: rgba(209, 168, 96, 0.1);
+  font-size: 0.86rem;
+}
+
+.orientation-actions {
+  display: grid;
+  gap: 9px;
+}
+
+.orientation-actions button,
+.orientation-actions a,
+.orientation-expertise-list a {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 15px;
+  border: 1px solid rgba(16, 61, 51, 0.15);
+  border-radius: 13px;
+  background: #fff;
+  color: var(--ink-deep);
+  font: inherit;
+  font-size: 0.91rem;
+  font-weight: 700;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.orientation-actions button:hover,
+.orientation-actions a:hover,
+.orientation-expertise-list a:hover {
+  border-color: var(--sage);
+  background: var(--sage-soft);
+}
+
+.orientation-back {
+  margin: -4px 0 17px;
+  border: 0;
+  background: transparent;
+  color: var(--sage);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.orientation-expertise-list {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.orientation-primary-link {
+  display: inline-flex;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: var(--ink-deep);
+  color: var(--paper);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.orientation-faq details {
+  border-bottom: 1px solid rgba(16, 61, 51, 0.13);
+}
+
+.orientation-faq summary {
+  padding: 14px 2px;
+  color: var(--ink-deep);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.orientation-faq details p {
+  padding: 0 2px 13px;
+  font-size: 0.9rem;
+}
+
+.orientation-direct-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.orientation-direct-links a {
+  color: var(--ink-deep);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
+.orientation-footer {
+  padding: 15px 24px 18px;
+  border-top: 1px solid rgba(16, 61, 51, 0.12);
+  color: var(--muted);
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 620px) {
+  .orientation-assistant {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .orientation-panel {
+    width: 100%;
+    max-height: calc(100vh - 92px);
+  }
+
+  .orientation-launcher {
+    padding-right: 15px;
+  }
+
+  .orientation-header,
+  .orientation-body {
+    padding-right: 19px;
+    padding-left: 19px;
+  }
+
+  .orientation-footer {
+    padding-right: 19px;
+    padding-left: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orientation-panel {
+    animation: none;
+  }
+
+  .orientation-launcher {
+    transition: none;
+  }
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {

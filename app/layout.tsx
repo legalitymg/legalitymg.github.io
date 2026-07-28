@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { OrientationAssistant } from "@/components/orientation-assistant";
 import "./globals.css";
 
 const siteUrl = (
@@ -125,6 +126,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(legalServiceSchema) }}
         />
         {children}
+        <OrientationAssistant />
       </body>
     </html>
   );
