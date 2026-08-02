@@ -20,7 +20,7 @@ les annuaires professionnels :
 - **Adresse :** LOT PR II E 67 JC BIS, Tsarahonenana, Antananarivo 101, Madagascar
 - **Téléphone :** +261 34 85 510 97
 - **E-mail :** legalitymadagascarfirm@gmail.com
-- **Site :** https://legalitymg.github.io/
+- **Site :** https://legality.mg/
 - **Horaires :** lundi à vendredi, 9h00 à 18h00, sur rendez-vous
 
 ## 2. Ajouter le site à Google Search Console
@@ -31,7 +31,7 @@ les annuaires professionnels :
 3. Choisir **Préfixe de l’URL**.
 4. Saisir exactement :
 
-   `https://legalitymg.github.io/`
+   `https://legality.mg/`
 
 5. Choisir la méthode **Balise HTML**.
 6. Copier la valeur située dans :
@@ -55,19 +55,19 @@ Après validation de la propriété :
 
 Adresse complète :
 
-`https://legalitymg.github.io/sitemap.xml`
+`https://legality.mg/sitemap.xml`
 
 ## 4. Demander l’indexation des pages prioritaires
 
 Utiliser **Inspection de l’URL** pour chacune de ces pages, puis cliquer sur
 **Demander une indexation** :
 
-1. `https://legalitymg.github.io/`
-2. `https://legalitymg.github.io/cabinet/`
-3. `https://legalitymg.github.io/expertises/`
-4. `https://legalitymg.github.io/contact/`
-5. `https://legalitymg.github.io/consultation/`
-6. `https://legalitymg.github.io/actualites/`
+1. `https://legality.mg/`
+2. `https://legality.mg/cabinet/`
+3. `https://legality.mg/expertises/`
+4. `https://legality.mg/contact/`
+5. `https://legality.mg/consultation/`
+6. `https://legality.mg/actualites/`
 
 ## 5. Créer ou compléter Google Business Profile
 
@@ -92,7 +92,7 @@ rester exactement **Legality Madagascar Firm**.
 - Créer des liens depuis des partenaires et annuaires professionnels légitimes.
 - Conserver le même nom, la même adresse et le même téléphone partout.
 - Répondre aux avis et maintenir le Google Business Profile à jour.
-- Envisager un domaine court comme `legality.mg`.
+- Utiliser systématiquement `https://legality.mg` comme adresse officielle.
 
 ## 7. Suivi mensuel
 

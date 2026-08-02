@@ -37,7 +37,7 @@ jobs:
       - name: Construire le site
         env:
           EXPORT_GITHUB_PAGES: "true"
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_PUBLIC_SITE_URL: https://legality.mg
         run: npx next build
 
       - name: Préparer les fichiers publiés

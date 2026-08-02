@@ -69,7 +69,7 @@ export default function ConsultationForm() {
       submission.append("niveau_urgence", form.urgency);
       submission.append("objet_general", form.message);
       submission.append("consentement", form.consent ? "Oui" : "Non");
-      submission.append("source", "legalitymg.github.io");
+      submission.append("source", "legality.mg");
 
       const response = await fetch(formspreeEndpoint, {
         method: "POST",

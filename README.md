@@ -39,7 +39,7 @@ Puis ouvrir `http://localhost:3000`.
 
 ```bash
 EXPORT_GITHUB_PAGES=true \
-NEXT_PUBLIC_SITE_URL=https://legalitymg.github.io \
+NEXT_PUBLIC_SITE_URL=https://legality.mg \
 npx next build
 ```
 

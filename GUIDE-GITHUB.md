@@ -7,8 +7,8 @@ pour être publié automatiquement avec GitHub Pages.
 
 - Organisation GitHub recommandée : `legalitymg`
 - Dépôt du site : `legalitymg.github.io`
-- Adresse gratuite : `https://legalitymg.github.io`
-- Domaine professionnel conseillé : `legality.mg`, s’il est disponible
+- Adresse technique GitHub Pages : `https://legalitymg.github.io`
+- Adresse publique officielle : `https://legality.mg`
 - Publication automatique après chaque mise à jour de la branche `main`
 
 > Si `legalitymg` est déjà pris, choisissez un nom court comme
@@ -135,7 +135,7 @@ Une fois le code visible dans le dépôt :
 5. Ouvrez ensuite l’onglet **Actions** du dépôt.
 6. Cliquez sur le workflow **Publier le site**.
 7. Attendez que les étapes `build` et `deploy` affichent une coche verte.
-8. Ouvrez `https://legalitymg.github.io`.
+8. Ouvrez `https://legality.mg`.
 
 Chaque nouveau `git push` sur `main` relancera automatiquement la publication.
 
@@ -155,7 +155,7 @@ Pour tester exactement la version statique destinée à GitHub Pages :
 
 ```bash
 EXPORT_GITHUB_PAGES=true \
-NEXT_PUBLIC_SITE_URL=https://legalitymg.github.io \
+NEXT_PUBLIC_SITE_URL=https://legality.mg \
 npx next build
 ```
 
@@ -222,7 +222,7 @@ Pour viser la recherche **Cabinet juridique à Madagascar** :
 2. créez ou revendiquez le Google Business Profile du cabinet ;
 3. utilisez exactement les mêmes nom, téléphone, e-mail et adresse partout ;
 4. ajoutez le site à Google Search Console ;
-5. envoyez `https://legalitymg.github.io/sitemap.xml` ;
+5. envoyez `https://legality.mg/sitemap.xml` ;
 6. publiez régulièrement des articles utiles, originaux et précis sur le droit
    à Madagascar ;
 7. obtenez des liens depuis des annuaires et partenaires professionnels

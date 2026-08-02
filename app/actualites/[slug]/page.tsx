@@ -7,7 +7,7 @@ import { Footer, Header } from "@/components/site-shell";
 
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://legalitymg.github.io"
+  "https://legality.mg"
 ).replace(/\/$/, "");
 
 export function generateStaticParams() {
