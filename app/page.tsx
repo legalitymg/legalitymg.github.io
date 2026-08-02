@@ -130,7 +130,7 @@ export default function Home() {
             </div>
             <div className="expertise-list">
               {practiceAreas.slice(0, 6).map((area, index) => (
-                <Link href="/expertises" className="expertise-row" key={area.title}>
+                <Link href={`/expertises/${area.slug}`} className="expertise-row" key={area.title}>
                   <span className="expertise-index">0{index + 1}</span>
                   <div>
                     <h3>{area.title}</h3>

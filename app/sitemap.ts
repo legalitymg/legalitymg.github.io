@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles } from "@/components/site-data";
+import { articles, practiceAreas } from "@/components/site-data";
 
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages.map((path) => ({
       url: path ? `${siteUrl}${path}/` : `${siteUrl}/`,
-      lastModified: new Date("2026-07-27"),
+      lastModified: new Date("2026-08-01"),
       changeFrequency: path === "" ? ("weekly" as const) : ("monthly" as const),
       priority:
         path === ""
@@ -32,9 +32,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
             ? 0.9
             : 0.7,
     })),
+    ...practiceAreas.map((area) => ({
+      url: `${siteUrl}/expertises/${area.slug}/`,
+      lastModified: new Date("2026-08-01"),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
     ...articles.map((article) => ({
       url: `${siteUrl}/actualites/${article.slug}/`,
-      lastModified: new Date("2026-07-27"),
+      lastModified: new Date("2026-08-01"),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

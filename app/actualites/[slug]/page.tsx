@@ -71,6 +71,14 @@ export default async function ArticlePage({
         url: `${siteUrl}/favicon.svg`,
       },
     },
+    articleBody: [
+      article.lead,
+      ...article.sections.flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.bullets ?? []),
+      ]),
+    ].join("\n"),
   };
 
   return (
@@ -95,34 +103,26 @@ export default async function ArticlePage({
           <div className="shell article-body-grid">
             <aside>
               <span>À retenir</span>
-              <p>Chaque situation est différente. Demandez un avis adapté avant d’agir ou de laisser passer un délai.</p>
+              <p>{article.takeaway}</p>
+              <Link className="text-link" href="/expertises">
+                Voir les expertises <ArrowIcon />
+              </Link>
             </aside>
             <div className="article-body prose">
-              <p className="lead">
-                Face à une question juridique, l’objectif n’est pas de tout savoir
-                immédiatement : il est d’identifier les faits, les documents et la
-                décision que vous devez prendre.
-              </p>
-              <h2>Commencer par les faits essentiels</h2>
-              <p>
-                Notez les événements dans leur ordre, avec les dates connues et les
-                personnes concernées. Distinguez les faits vérifiables de vos
-                impressions. Cette première chronologie aide à repérer les zones
-                d’incertitude et les éventuelles échéances.
-              </p>
-              <h2>Rassembler sans surcharger</h2>
-              <p>
-                Regroupez les contrats, courriers, décisions, échanges et justificatifs
-                directement liés à la question. Conservez les originaux. Un dossier
-                classé par date permet de consacrer le rendez-vous à l’analyse plutôt
-                qu’à la recherche d’informations.
-              </p>
-              <h2>Formuler votre objectif</h2>
-              <p>
-                Souhaitez-vous comprendre vos droits, sécuriser un projet, négocier,
-                répondre à un courrier ou engager une procédure ? L’objectif peut
-                évoluer, mais le formuler permet d’évaluer les options de façon plus concrète.
-              </p>
+              <p className="lead">{article.lead}</p>
+              {article.sections.map((section) => (
+                <section key={section.title}>
+                  <h2>{section.title}</h2>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  {section.bullets?.length ? (
+                    <ul>
+                      {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                    </ul>
+                  ) : null}
+                </section>
+              ))}
               <div className="article-callout">
                 <h3>Un doute sur votre situation ?</h3>
                 <p>Présentez les éléments principaux au cabinet pour savoir quelle consultation choisir.</p>

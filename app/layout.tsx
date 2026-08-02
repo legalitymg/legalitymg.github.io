@@ -74,6 +74,7 @@ const legalServiceSchema = {
     "Cabinet juridique à Antananarivo proposant conseil, accompagnement judiciaire et services juridiques aux particuliers, entreprises, organisations et investisseurs à Madagascar.",
   url: siteUrl,
   logo: `${siteUrl}/favicon.svg`,
+  sameAs: ["https://www.facebook.com/100063998887119/"],
   telephone: "+261348551097",
   email: "contact@legality.mg",
   address: {

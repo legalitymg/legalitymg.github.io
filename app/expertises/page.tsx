@@ -31,6 +31,9 @@ export default function ExpertisesPage() {
                 <ul>
                   {area.items.map((item) => <li key={item}>{item}</li>)}
                 </ul>
+                <Link className="text-link" href={`/expertises/${area.slug}`}>
+                  Découvrir cette expertise <ArrowIcon />
+                </Link>
               </article>
             ))}
           </div>
