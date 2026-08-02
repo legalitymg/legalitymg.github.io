@@ -22,7 +22,7 @@ export default function PrivacyPage() {
             <p>
               Legality Madagascar Firm, LOT PR II E 67 JC BIS, Tsarahonenana,
               Antananarivo 101, Madagascar. Contact : +261 34 85 510 97 ou
-              legalitymadagascarfirm@gmail.com.
+              contact@legality.mg.
             </p>
             <h2>Données traitées</h2>
             <p>
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
             <p>
               Selon le droit applicable, vous pouvez exercer des droits d’accès, de
               rectification, d’effacement, de limitation, d’opposition ou de
-              portabilité en écrivant à legalitymadagascarfirm@gmail.com.
+              portabilité en écrivant à contact@legality.mg.
             </p>
             <h2>Cookies et mesure d’audience</h2>
             <p>

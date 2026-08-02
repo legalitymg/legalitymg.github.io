@@ -19,7 +19,7 @@ les annuaires professionnels :
 - **Activité :** Cabinet juridique
 - **Adresse :** LOT PR II E 67 JC BIS, Tsarahonenana, Antananarivo 101, Madagascar
 - **Téléphone :** +261 34 85 510 97
-- **E-mail :** legalitymadagascarfirm@gmail.com
+- **E-mail :** contact@legality.mg
 - **Site :** https://legality.mg/
 - **Horaires :** lundi à vendredi, 9h00 à 18h00, sur rendez-vous
 

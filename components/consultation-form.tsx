@@ -107,7 +107,7 @@ export default function ConsultationForm() {
           <button className="button button-outline" type="button" onClick={() => setStatus("idle")}>
             Nouvelle demande
           </button>
-          <a className="button button-primary" href="mailto:legalitymadagascarfirm@gmail.com">
+          <a className="button button-primary" href="mailto:contact@legality.mg">
             Écrire au cabinet <ArrowIcon />
           </a>
         </div>
@@ -259,8 +259,8 @@ export default function ConsultationForm() {
                 <>
                   <strong>La transmission automatique a échoué.</strong>
                   <span> Réessayez dans quelques instants ou écrivez à </span>
-                  <a href="mailto:legalitymadagascarfirm@gmail.com">
-                    legalitymadagascarfirm@gmail.com
+                  <a href="mailto:contact@legality.mg">
+                    contact@legality.mg
                   </a>.
                 </>
               )}

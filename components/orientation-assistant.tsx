@@ -168,7 +168,7 @@ export function OrientationAssistant() {
                 </details>
                 <div className="orientation-direct-links">
                   <a href="tel:+261348551097">Appeler le cabinet</a>
-                  <a href="mailto:legalitymadagascarfirm@gmail.com">
+                  <a href="mailto:contact@legality.mg">
                     Envoyer un e-mail
                   </a>
                 </div>

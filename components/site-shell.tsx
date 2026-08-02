@@ -57,7 +57,7 @@ export function Footer() {
           <h3>Coordonnées</h3>
           <p>LOT PR II E 67 JC BIS<br />Tsarahonenana, Antananarivo 101</p>
           <a href="tel:+261348551097">+261 34 85 510 97</a>
-          <a href="mailto:legalitymadagascarfirm@gmail.com">legalitymadagascarfirm@gmail.com</a>
+          <a href="mailto:contact@legality.mg">contact@legality.mg</a>
           <a href="https://wa.me/261348551097">Écrire sur WhatsApp</a>
         </div>
         <div>

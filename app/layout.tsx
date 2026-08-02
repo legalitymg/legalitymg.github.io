@@ -75,7 +75,7 @@ const legalServiceSchema = {
   url: siteUrl,
   logo: `${siteUrl}/favicon.svg`,
   telephone: "+261348551097",
-  email: "legalitymadagascarfirm@gmail.com",
+  email: "contact@legality.mg",
   address: {
     "@type": "PostalAddress",
     streetAddress: "LOT PR II E 67 JC BIS, Tsarahonenana",
@@ -90,7 +90,7 @@ const legalServiceSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+261348551097",
-    email: "legalitymadagascarfirm@gmail.com",
+    email: "contact@legality.mg",
     contactType: "service juridique",
     availableLanguage: ["fr"],
   },

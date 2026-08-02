@@ -22,7 +22,7 @@ export default function LegalPage() {
             <p>
               Legality Madagascar Firm, cabinet juridique à Antananarivo, Madagascar.<br />
               Téléphone : +261 34 85 510 97<br />
-              E-mail : legalitymadagascarfirm@gmail.com<br />
+              E-mail : contact@legality.mg<br />
               Adresse : LOT PR II E 67 JC BIS, Tsarahonenana, Antananarivo 101, Madagascar.<br />
               Informations professionnelles complémentaires : à valider avant la publication définitive.
             </p>

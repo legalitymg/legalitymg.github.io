@@ -27,7 +27,7 @@ export default function ContactPage() {
               <dl>
                 <div><dt>Adresse</dt><dd>LOT PR II E 67 JC BIS<br />Tsarahonenana, Antananarivo 101<br />Madagascar</dd></div>
                 <div><dt>Téléphone</dt><dd><a href="tel:+261348551097">+261 34 85 510 97</a></dd></div>
-                <div><dt>E-mail</dt><dd><a href="mailto:legalitymadagascarfirm@gmail.com">legalitymadagascarfirm@gmail.com</a></dd></div>
+                <div><dt>E-mail</dt><dd><a href="mailto:contact@legality.mg">contact@legality.mg</a></dd></div>
                 <div><dt>WhatsApp</dt><dd><a href="https://wa.me/261348551097">Envoyer un message</a></dd></div>
                 <div><dt>Rendez-vous</dt><dd>Au cabinet ou à distance<br />Lundi — vendredi, 9h00 — 18h00</dd></div>
               </dl>

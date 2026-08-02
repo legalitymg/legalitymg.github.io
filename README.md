@@ -18,7 +18,7 @@ implanté à Antananarivo, Madagascar.
 ## Coordonnées publiées
 
 - Téléphone : +261 34 85 510 97
-- E-mail : legalitymadagascarfirm@gmail.com
+- E-mail : contact@legality.mg
 - Adresse : LOT PR II E 67 JC BIS, Tsarahonenana, Antananarivo 101, Madagascar
 
 Le site ne publie aucune information présentant une personne comme propriétaire,
