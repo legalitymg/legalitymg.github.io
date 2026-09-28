@@ -66,58 +66,69 @@ export const viewport: Viewport = {
   themeColor: "#19342d",
 };
 
-const legalServiceSchema = {
-  "@context": "https://schema.org",
-  "@type": "LegalService",
-  "@id": `${siteUrl}/#cabinet-juridique`,
-  name: siteName,
-  legalName: siteName,
-  slogan: "Votre droit. Notre engagement.",
-  description:
-    "Cabinet juridique à Antananarivo proposant conseil, accompagnement judiciaire et services juridiques aux particuliers, entreprises, organisations et investisseurs à Madagascar.",
-  url: siteUrl,
-  logo: `${siteUrl}/favicon.svg`,
-  sameAs: ["https://www.facebook.com/100063998887119/"],
-  telephone: "+261348551097",
-  email: "contact@legality.mg",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "LOT PR II E 67 JC BIS, Tsarahonenana",
-    addressLocality: "Antananarivo",
-    postalCode: "101",
-    addressCountry: "MG",
+const organizationSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    url: `${siteUrl}/`,
+    name: siteName,
+    inLanguage: "fr-MG",
+    publisher: { "@id": `${siteUrl}/#cabinet-juridique` },
   },
-  areaServed: {
-    "@type": "Country",
-    name: "Madagascar",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "@id": `${siteUrl}/#cabinet-juridique`,
+    name: siteName,
+    legalName: siteName,
+    slogan: "Votre droit. Notre engagement.",
+    description:
+      "Cabinet juridique à Antananarivo proposant conseil, accompagnement judiciaire et services juridiques aux particuliers, entreprises, organisations et investisseurs à Madagascar.",
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+    sameAs: ["https://www.facebook.com/100063998887119/"],
     telephone: "+261348551097",
     email: "contact@legality.mg",
-    contactType: "service juridique",
-    availableLanguage: ["fr"],
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "LOT PR II E 67 JC BIS, Tsarahonenana",
+      addressLocality: "Antananarivo",
+      postalCode: "101",
+      addressCountry: "MG",
     },
-  ],
-  knowsAbout: [
-    "Accompagnement juridique et judiciaire",
-    "Recouvrement de créances",
-    "Fiscalité",
-    "Droit des affaires",
-    "Droit du travail",
-    "Investissements étrangers",
-    "Immobilier",
-    "Conformité juridique",
-  ],
-  availableLanguage: "fr",
-};
+    areaServed: {
+      "@type": "Country",
+      name: "Madagascar",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+261348551097",
+      email: "contact@legality.mg",
+      contactType: "service juridique",
+      availableLanguage: ["fr"],
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    ],
+    knowsAbout: [
+      "Accompagnement juridique et judiciaire",
+      "Recouvrement de créances",
+      "Fiscalité",
+      "Droit des affaires",
+      "Droit du travail",
+      "Investissements étrangers",
+      "Immobilier",
+      "Conformité juridique",
+    ],
+    availableLanguage: "fr",
+  },
+];
 
 export default function RootLayout({
   children,
@@ -127,7 +138,7 @@ export default function RootLayout({
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(legalServiceSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         {children}
         <OrientationAssistant />

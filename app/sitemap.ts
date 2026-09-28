@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { accountingServicePages } from "@/components/accounting-service-data";
 import { articles, practiceAreas } from "@/components/site-data";
 
 const siteUrl = (
@@ -36,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...practiceAreas.map((area) => ({
       url: `${siteUrl}/expertises/${area.slug}/`,
       lastModified: new Date("2026-08-01"),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
+    ...accountingServicePages.map((page) => ({
+      url: `${siteUrl}/comptabilite/${page.slug}/`,
+      lastModified: new Date("2026-09-28"),
       changeFrequency: "monthly" as const,
       priority: 0.85,
     })),
