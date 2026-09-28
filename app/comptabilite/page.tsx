@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AccountingContactForm } from "@/components/accounting-contact-form";
+import { AccountingFooter, AccountingHeader } from "@/components/accounting-site-chrome";
 import { ArrowIcon } from "@/components/icons";
 
 const siteUrl = (
@@ -29,7 +30,15 @@ export const metadata: Metadata = {
     "tenue comptable Madagascar",
     "analyse financière Madagascar",
   ],
-  alternates: { canonical: "/comptabilite/" },
+  alternates: {
+    canonical: "/comptabilite/",
+    languages: { "fr-MG": "/comptabilite/" },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   openGraph: {
     type: "website",
     locale: "fr_MG",
@@ -52,42 +61,49 @@ const services = [
     title: "Déclarations fiscales et sociales",
     text: "Préparation et suivi des obligations CNAPS, OSTIE, IRSA, TVA et du volet administratif lié aux ressources humaines.",
     icon: "document",
+    href: "/comptabilite/declarations-fiscales-sociales/",
   },
   {
     number: "02",
     title: "Tenue de la comptabilité",
     text: "Organisation et enregistrement régulier des opérations pour maintenir une comptabilité structurée et à jour.",
     icon: "ledger",
+    href: "/comptabilite/tenue-suivi-comptable/",
   },
   {
     number: "03",
     title: "Suivi comptable régulier",
     text: "Un suivi défini selon le rythme de votre activité pour mieux anticiper les actions et échéances à venir.",
     icon: "calendar",
+    href: "/comptabilite/tenue-suivi-comptable/",
   },
   {
     number: "04",
     title: "Clôture comptable mensuelle",
     text: "Contrôle périodique des écritures et préparation d’une vision claire de la situation comptable du mois.",
     icon: "check",
+    href: "/comptabilite/tenue-suivi-comptable/",
   },
   {
     number: "05",
     title: "Accompagnement et conseils",
     text: "Des explications accessibles et des conseils adaptés à vos opérations, à votre organisation et à vos priorités.",
     icon: "compass",
+    href: "/comptabilite/#contact",
   },
   {
     number: "06",
     title: "Redressement comptable",
     text: "Reprise, vérification et remise en ordre d’une comptabilité incomplète, en retard ou nécessitant des corrections.",
     icon: "refresh",
+    href: "/comptabilite/redressement-analyse-financiere/",
   },
   {
     number: "07",
     title: "Analyse financière",
     text: "Lecture structurée des informations financières pour éclairer le suivi de l’activité et les décisions de gestion.",
     icon: "chart",
+    href: "/comptabilite/redressement-analyse-financiere/",
   },
 ];
 
@@ -126,14 +142,6 @@ const faq = [
   },
 ];
 
-function AccountingMark() {
-  return (
-    <span className="accounting-mark" aria-hidden="true">
-      <i /><i /><i />
-    </span>
-  );
-}
-
 function ServiceIcon({ type }: { type: string }) {
   const common = {
     fill: "none",
@@ -157,26 +165,72 @@ function ServiceIcon({ type }: { type: string }) {
 }
 
 export default function AccountingPage() {
-  const accountingSchema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "@id": `${siteUrl}/comptabilite/#service`,
-    name: "Legality Madagascar Firm — Comptabilité & Fiscalité",
-    description:
-      "Services de comptabilité, fiscalité, déclarations sociales, redressement comptable et analyse financière à Madagascar.",
-    url: `${siteUrl}/comptabilite/`,
-    telephone: "+261348934958",
-    email: "compta@legality.mg",
-    areaServed: { "@type": "Country", name: "Madagascar" },
-    serviceType: services.map((service) => service.title),
-    contactPoint: {
-      "@type": "ContactPoint",
+  const pageUrl = `${siteUrl}/comptabilite/`;
+  const accountingSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": `${pageUrl}#service`,
+      name: "Legality Madagascar Firm — Comptabilité & Fiscalité",
+      description:
+        "Services de comptabilité, fiscalité, déclarations sociales, redressement comptable et analyse financière à Madagascar.",
+      url: pageUrl,
       telephone: "+261348934958",
       email: "compta@legality.mg",
-      contactType: "service comptabilité et fiscalité",
-      availableLanguage: ["fr"],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "LOT PR II E 67 JC BIS, Tsarahonenana",
+        addressLocality: "Antananarivo",
+        postalCode: "101",
+        addressCountry: "MG",
+      },
+      areaServed: { "@type": "Country", name: "Madagascar" },
+      parentOrganization: { "@id": `${siteUrl}/#cabinet-juridique` },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Services de comptabilité et fiscalité",
+        itemListElement: services.map((service) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: service.title, description: service.text },
+        })),
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+261348934958",
+        email: "compta@legality.mg",
+        contactType: "service comptabilité et fiscalité",
+        availableLanguage: ["fr"],
+      },
     },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: "Cabinet comptable à Madagascar | Legality Madagascar Firm",
+      description: metadata.description,
+      inLanguage: "fr-MG",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${pageUrl}#service` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Accueil", item: `${siteUrl}/` },
+        { "@type": "ListItem", position: 2, name: "Comptabilité & fiscalité", item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    },
+  ];
 
   return (
     <div className="accounting-site">
@@ -185,36 +239,7 @@ export default function AccountingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(accountingSchema) }}
       />
 
-      <header className="accounting-header">
-        <div className="accounting-shell accounting-header-inner">
-          <Link href="/comptabilite/" className="accounting-brand" aria-label="Accueil Comptabilité et fiscalité">
-            <AccountingMark />
-            <span>
-              <strong>Legality Madagascar Firm</strong>
-              <small>Comptabilité & fiscalité</small>
-            </span>
-          </Link>
-          <nav aria-label="Navigation Comptabilité et fiscalité">
-            <a href="#services">Services</a>
-            <a href="#methode">Notre méthode</a>
-            <a href="#questions">Questions</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <Link href="/" className="accounting-legal-link">
-            Pôle juridique <span aria-hidden="true">↗</span>
-          </Link>
-          <details className="accounting-mobile-menu">
-            <summary aria-label="Ouvrir le menu"><i /><i /></summary>
-            <div>
-              <a href="#services">Services</a>
-              <a href="#methode">Notre méthode</a>
-              <a href="#questions">Questions</a>
-              <a href="#contact">Contact</a>
-              <Link href="/">Pôle juridique</Link>
-            </div>
-          </details>
-        </div>
-      </header>
+      <AccountingHeader />
 
       <main>
         <section className="accounting-hero">
@@ -283,6 +308,9 @@ export default function AccountingPage() {
                   <span>{service.number}</span>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
+                  <Link className="accounting-service-more" href={service.href}>
+                    En savoir plus <ArrowIcon />
+                  </Link>
                 </article>
               ))}
               <article className="accounting-service-card accounting-service-cta">
@@ -333,6 +361,30 @@ export default function AccountingPage() {
           </div>
         </section>
 
+        <section className="accounting-local">
+          <div className="accounting-shell accounting-local-grid">
+            <div>
+              <p className="accounting-kicker light"><span /> Antananarivo · Madagascar</p>
+              <h2>Un service de comptabilité et de fiscalité à Madagascar, proche de votre activité.</h2>
+            </div>
+            <div>
+              <p>
+                Legality Madagascar Firm accompagne les entreprises qui recherchent un
+                cabinet comptable à Madagascar pour structurer leur tenue comptable,
+                leurs déclarations fiscales et sociales et le suivi de leur activité.
+              </p>
+              <p>
+                Notre approche relie comptabilité, fiscalité et volet administratif des
+                ressources humaines dans un fonctionnement clair, adapté à votre
+                organisation et à vos priorités.
+              </p>
+              <address>
+                LOT PR II E 67 JC BIS, Tsarahonenana · Antananarivo 101
+              </address>
+            </div>
+          </div>
+        </section>
+
         <section className="accounting-section accounting-faq" id="questions">
           <div className="accounting-shell accounting-faq-grid">
             <div className="accounting-faq-heading">
@@ -376,30 +428,7 @@ export default function AccountingPage() {
         </section>
       </main>
 
-      <footer className="accounting-footer">
-        <div className="accounting-shell accounting-footer-main">
-          <Link href="/comptabilite/" className="accounting-brand accounting-brand-light">
-            <AccountingMark />
-            <span><strong>Legality Madagascar Firm</strong><small>Comptabilité & fiscalité</small></span>
-          </Link>
-          <p>Des chiffres organisés.<br />Des décisions plus claires.</p>
-          <div>
-            <a href="#services">Services</a>
-            <a href="#methode">Notre méthode</a>
-            <a href="#questions">Questions fréquentes</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div>
-            <Link href="/">Cabinet juridique</Link>
-            <Link href="/mentions-legales/">Mentions légales</Link>
-            <Link href="/confidentialite/">Confidentialité</Link>
-          </div>
-        </div>
-        <div className="accounting-shell accounting-footer-bottom">
-          <span>© 2026 Legality Madagascar Firm. Tous droits réservés.</span>
-          <span>Comptabilité · Fiscalité · Gestion</span>
-        </div>
-      </footer>
+      <AccountingFooter />
 
       <a className="accounting-mobile-cta" href={whatsappUrl} target="_blank" rel="noreferrer">
         Échanger sur WhatsApp <span>↗</span>
