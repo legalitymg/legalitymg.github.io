@@ -164,6 +164,25 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="accounting-home-link">
+          <div className="shell accounting-home-link-inner">
+            <div>
+              <p className="eyebrow"><span /> Pôle comptabilité & fiscalité</p>
+              <h2>Vos obligations suivies.<br />Vos décisions mieux éclairées.</h2>
+            </div>
+            <div>
+              <p>
+                Découvrez notre accompagnement en tenue comptable, déclarations
+                fiscales et sociales, clôture mensuelle, redressement et analyse
+                financière à Madagascar.
+              </p>
+              <Link className="button button-light" href="/comptabilite">
+                Découvrir le pôle comptabilité <ArrowIcon />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="section news-preview">
           <div className="shell">
             <div className="section-topline">

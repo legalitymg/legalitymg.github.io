@@ -48,6 +48,9 @@ export const metadata: Metadata = {
   },
   category: "legal services",
   other: {
+    ...(process.env.EXPORT_GITHUB_PAGES === "true"
+      ? {}
+      : { "codex-preview": "development" }),
     "geo.region": "MG-T",
     "geo.placename": "Antananarivo",
   },
