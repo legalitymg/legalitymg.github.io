@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type View = "menu" | "expertises" | "faq";
@@ -14,7 +15,17 @@ const expertiseLinks = [
   "Investisseurs étrangers",
 ];
 
+const accountingLinks = [
+  "Déclarations fiscales et sociales",
+  "Tenue et suivi de la comptabilité",
+  "Clôture comptable mensuelle",
+  "Redressement comptable",
+  "Analyse financière",
+];
+
 export function OrientationAssistant() {
+  const pathname = usePathname();
+  const isAccounting = pathname.startsWith("/comptabilite");
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<View>("menu");
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -53,7 +64,9 @@ export function OrientationAssistant() {
           <header className="orientation-header">
             <div>
               <span className="orientation-eyebrow">ASSISTANT D’ORIENTATION</span>
-              <h2 id="orientation-title">Comment pouvons-nous vous aider&nbsp;?</h2>
+              <h2 id="orientation-title">
+                {isAccounting ? "Quel service recherchez-vous ?" : "Comment pouvons-nous vous aider ?"}
+              </h2>
             </div>
             <button
               ref={closeButtonRef}
@@ -80,35 +93,47 @@ export function OrientationAssistant() {
             {view === "menu" && (
               <>
                 <p className="orientation-welcome">
-                  Bonjour, je suis l’assistant d’orientation de Legality Madagascar
-                  Firm. Je peux vous guider vers une expertise, les coordonnées du
-                  cabinet ou une demande de rendez-vous.
+                  {isAccounting
+                    ? "Je peux vous guider vers nos services comptables et fiscaux, le formulaire de contact ou un échange direct sur WhatsApp."
+                    : "Bonjour, je suis l’assistant d’orientation de Legality Madagascar Firm. Je peux vous guider vers une expertise, les coordonnées du cabinet ou une demande de rendez-vous."}
                 </p>
                 <p className="orientation-alert">
-                  Ne partagez aucun document ni renseignement confidentiel dans cet
-                  assistant.
+                  Ne partagez aucun document ni renseignement sensible dans cet assistant.
                 </p>
                 <div className="orientation-actions">
                   <button type="button" onClick={() => setView("expertises")}>
-                    Trouver l’expertise adaptée <span>→</span>
+                    {isAccounting ? "Voir les services proposés" : "Trouver l’expertise adaptée"} <span>→</span>
                   </button>
-                  <Link href="/consultation/" onClick={closeAssistant}>
-                    Demander un rendez-vous <span>→</span>
+                  <Link href={isAccounting ? "/comptabilite/#contact" : "/consultation/"} onClick={closeAssistant}>
+                    {isAccounting ? "Envoyer une demande" : "Demander un rendez-vous"} <span>→</span>
                   </Link>
-                  <Link href="/contact/" onClick={closeAssistant}>
-                    Horaires et adresse <span>→</span>
-                  </Link>
+                  {isAccounting ? (
+                    <a
+                      href="https://wa.me/261348934958"
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={closeAssistant}
+                    >
+                      Écrire sur WhatsApp <span>→</span>
+                    </a>
+                  ) : (
+                    <Link href="/contact/" onClick={closeAssistant}>
+                      Horaires et adresse <span>→</span>
+                    </Link>
+                  )}
                   <button type="button" onClick={() => setView("faq")}>
                     Questions fréquentes <span>→</span>
                   </button>
-                  <a
-                    href="https://wa.me/261348551097"
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={closeAssistant}
-                  >
-                    Contacter directement le cabinet <span>→</span>
-                  </a>
+                  {!isAccounting && (
+                    <a
+                      href="https://wa.me/261348551097"
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={closeAssistant}
+                    >
+                      Contacter directement le cabinet <span>→</span>
+                    </a>
+                  )}
                 </div>
               </>
             )}
@@ -116,13 +141,14 @@ export function OrientationAssistant() {
             {view === "expertises" && (
               <>
                 <p>
-                  Sélectionnez le domaine le plus proche de votre besoin. Le cabinet
-                  confirmera ensuite l’orientation appropriée.
+                  {isAccounting
+                    ? "Sélectionnez le service le plus proche de votre besoin. L’équipe précisera ensuite le périmètre adapté."
+                    : "Sélectionnez le domaine le plus proche de votre besoin. Le cabinet confirmera ensuite l’orientation appropriée."}
                 </p>
                 <ul className="orientation-expertise-list">
-                  {expertiseLinks.map((expertise) => (
+                  {(isAccounting ? accountingLinks : expertiseLinks).map((expertise) => (
                     <li key={expertise}>
-                      <Link href="/expertises/" onClick={closeAssistant}>
+                      <Link href={isAccounting ? "/comptabilite/#services" : "/expertises/"} onClick={closeAssistant}>
                         {expertise} <span>→</span>
                       </Link>
                     </li>
@@ -130,10 +156,10 @@ export function OrientationAssistant() {
                 </ul>
                 <Link
                   className="orientation-primary-link"
-                  href="/consultation/"
+                  href={isAccounting ? "/comptabilite/#contact" : "/consultation/"}
                   onClick={closeAssistant}
                 >
-                  Décrire brièvement votre besoin
+                  {isAccounting ? "Présenter mon besoin" : "Décrire brièvement votre besoin"}
                 </Link>
               </>
             )}
@@ -141,45 +167,44 @@ export function OrientationAssistant() {
             {view === "faq" && (
               <div className="orientation-faq">
                 <details>
-                  <summary>Comment demander un rendez-vous&nbsp;?</summary>
+                  <summary>{isAccounting ? "Comment demander une estimation ?" : "Comment demander un rendez-vous ?"}</summary>
                   <p>
-                    Utilisez le formulaire de consultation. La demande sera transmise
-                    au cabinet par e-mail.
+                    {isAccounting
+                      ? "Présentez brièvement votre activité et le service recherché dans le formulaire ou par WhatsApp."
+                      : "Utilisez le formulaire de consultation. La demande sera transmise au cabinet par e-mail."}
                   </p>
                 </details>
                 <details>
-                  <summary>Quels sont les horaires du cabinet&nbsp;?</summary>
-                  <p>Du lundi au vendredi, de 9h00 à 18h00, sur rendez-vous.</p>
+                  <summary>{isAccounting ? "Pouvez-vous reprendre une comptabilité en retard ?" : "Quels sont les horaires du cabinet ?"}</summary>
+                  <p>{isAccounting ? "Oui. Le redressement comptable fait partie des services proposés, après un premier examen de la situation." : "Du lundi au vendredi, de 9h00 à 18h00, sur rendez-vous."}</p>
                 </details>
                 <details>
-                  <summary>Où se trouve le cabinet&nbsp;?</summary>
+                  <summary>{isAccounting ? "Prenez-vous en charge CNAPS, OSTIE, IRSA et TVA ?" : "Où se trouve le cabinet ?"}</summary>
                   <p>
-                    LOT PR II E 67 JC BIS, Tsarahonenana, Antananarivo 101,
-                    Madagascar.
+                    {isAccounting
+                      ? "Ces déclarations font partie des services proposés. Les obligations applicables sont confirmées selon votre activité."
+                      : "LOT PR II E 67 JC BIS, Tsarahonenana, Antananarivo 101, Madagascar."}
                   </p>
                 </details>
                 <details>
                   <summary>Puis-je envoyer des documents ici&nbsp;?</summary>
                   <p>
-                    Non. N’envoyez aucun document ni détail confidentiel par cet
-                    assistant. Le cabinet indiquera un canal approprié après le
-                    premier échange.
+                    Non. N’envoyez aucun document ni détail sensible par cet assistant.
+                    Un canal approprié pourra être indiqué après le premier échange.
                   </p>
                 </details>
                 <div className="orientation-direct-links">
-                  <a href="tel:+261348551097">Appeler le cabinet</a>
-                  <a href="mailto:contact@legality.mg">
-                    Envoyer un e-mail
-                  </a>
+                  <a href={isAccounting ? "tel:+261348934958" : "tel:+261348551097"}>Appeler</a>
+                  <a href={isAccounting ? "mailto:compta@legality.mg" : "mailto:contact@legality.mg"}>Envoyer un e-mail</a>
                 </div>
               </div>
             )}
           </div>
 
           <footer className="orientation-footer">
-            Cet assistant fournit uniquement des informations générales et une
-            orientation. Il ne remplace pas une consultation juridique et ne permet
-            pas d’évaluer votre dossier. Aucune conversation n’est enregistrée.
+            {isAccounting
+              ? "Cet assistant fournit uniquement des informations générales et une orientation. Aucune conversation n’est enregistrée."
+              : "Cet assistant fournit uniquement des informations générales et une orientation. Il ne remplace pas une consultation juridique et ne permet pas d’évaluer votre dossier. Aucune conversation n’est enregistrée."}
           </footer>
         </section>
       )}

@@ -5,6 +5,7 @@ import type { Article } from "./site-data";
 const nav = [
   { href: "/cabinet", label: "Le cabinet" },
   { href: "/expertises", label: "Expertises" },
+  { href: "/comptabilite", label: "Comptabilité" },
   { href: "/actualites", label: "Conseils & actualités" },
   { href: "/contact", label: "Contact" },
 ];
@@ -50,6 +51,7 @@ export function Footer() {
           <h3>Navigation</h3>
           <Link href="/cabinet">Le cabinet</Link>
           <Link href="/expertises">Expertises</Link>
+          <Link href="/comptabilite">Comptabilité & fiscalité</Link>
           <Link href="/actualites">Conseils & actualités</Link>
           <Link href="/consultation">Consultation</Link>
         </div>

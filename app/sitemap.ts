@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/cabinet",
     "/expertises",
+    "/comptabilite",
     "/consultation",
     "/actualites",
     "/contact",
@@ -23,12 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages.map((path) => ({
       url: path ? `${siteUrl}${path}/` : `${siteUrl}/`,
-      lastModified: new Date("2026-08-01"),
+      lastModified: new Date(path === "/comptabilite" ? "2026-09-28" : "2026-08-01"),
       changeFrequency: path === "" ? ("weekly" as const) : ("monthly" as const),
       priority:
         path === ""
           ? 1
-          : ["/cabinet", "/expertises", "/contact"].includes(path)
+          : ["/cabinet", "/expertises", "/comptabilite", "/contact"].includes(path)
             ? 0.9
             : 0.7,
     })),
